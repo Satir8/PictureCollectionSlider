@@ -1,9 +1,9 @@
 import './styles.css';
-import galleryItems from "./gallery-items.js";
+import galleryItems from './gallery-items.js';
 
-const galleryList = document.querySelector(".js-gallery");
-const lightBox = document.querySelector(".lightbox");
-const lightBoxImage = document.querySelector(".lightbox__image");
+const galleryList = document.querySelector('.js-gallery');
+const lightBox = document.querySelector('.lightbox');
+const lightBoxImage = document.querySelector('.lightbox__image');
 
 const addItems = galleryItems.reduce((acc, item) => {
   return (acc += `<li class="gallery__item">
@@ -19,16 +19,16 @@ const addItems = galleryItems.reduce((acc, item) => {
   />
 </a>
 </li>`);
-}, "");
-galleryList.insertAdjacentHTML("afterbegin", addItems);
+}, '');
+galleryList.insertAdjacentHTML('afterbegin', addItems);
 
-galleryList.addEventListener("click", handleClick);
-lightBox.addEventListener("click", handleClose);
-document.addEventListener("keydown", handleKeyPress);
+galleryList.addEventListener('click', handleClick);
+lightBox.addEventListener('click', handleClose);
+document.addEventListener('keydown', handleKeyPress);
 
 function handleClick(e) {
   e.preventDefault();
-  lightBox.classList.add("is-open");
+  lightBox.classList.add('is-open');
   lightBoxImage.src = e.target.dataset.source;
 }
 
@@ -37,12 +37,12 @@ function handleClose(e) {
   if (e.target === lightBoxImage) {
     return;
   }
-  lightBox.classList.remove("is-open");
-  lightBoxImage.src = "";
+  lightBox.classList.remove('is-open');
+  lightBoxImage.src = '';
 }
 
 function allowedKey(key) {
-  const ALLOWED_KEYS = ["Escape", "ArrowRight", "ArrowLeft"];
+  const ALLOWED_KEYS = ['Escape', 'ArrowRight', 'ArrowLeft'];
   return ALLOWED_KEYS.includes(key);
 }
 
@@ -51,9 +51,9 @@ function handleKeyPress(e) {
     return;
   }
 
-  if (e.code === "Escape") {
-    lightBox.classList.remove("is-open");
-    lightBoxImage.src = "";
+  if (e.code === 'Escape') {
+    lightBox.classList.remove('is-open');
+    lightBoxImage.src = '';
     return;
   }
 
@@ -63,10 +63,10 @@ function handleKeyPress(e) {
     return item.original === lightBoxImage.src;
   });
 
-  if (e.code === "ArrowRight") {
+  if (e.code === 'ArrowRight') {
     idx += 1;
   }
-  if (e.code === "ArrowLeft") {
+  if (e.code === 'ArrowLeft') {
     idx -= 1;
   }
   if (idx < 0) {
@@ -77,5 +77,4 @@ function handleKeyPress(e) {
     idx = 0;
   }
   lightBoxImage.src = galleryItems[idx].original;
-  
 }
